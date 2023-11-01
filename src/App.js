@@ -1,3 +1,6 @@
+import React from 'react';
+import styled from 'styled-components';
+
 function Header(props) {
     console.log(props); // const props = {title: "리액트(React)"}
     return (
@@ -39,14 +42,18 @@ function App() {
     return (
         <div className="root">
             {/* sum(1, 2) */}
-            <Header title="리액트(React)" />
-            <Nav />
+            <HeaderStyled title="리액트(React)" />
             <Article />
             <Article />
             <Article />
         </div>
     );
 }
+
+const HeaderStyled = styled(Header)`
+    display: flex;
+    border-bottom: 1px solid #eee;
+`;
 
 // App을 기본으로 내보내기
 export default App;
