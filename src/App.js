@@ -1,27 +1,38 @@
 import React from "react";
 import styled from "styled-components";
 
-function Header(props) {
-  console.log(props); // const props = {title: "리액트(React)"}
+function Header({ title, nav }) {
+  // console.log(props); // const props = {title: "리액트(React)"}
+  // props.nav = [{ title: "html" }, { title: "css" }, { title: "js" }]
+  // const { title, nav } = props;
   return (
     <header>
-      <h1>{props.title}</h1>
-      {/* <Nav /> */}
+      <h1>{title}</h1>
+      <Nav nav={nav} />
     </header>
   );
 }
 
-function Nav(props) {
+function Nav({ nav }) {
   // map() 함수를 사용한 배열 출력
-  const list = props.nav.map((item, index) => (
-    <li key={index}>
-      <a href={"/sub/" + item.title}>{item.title}</a>
-    </li>
-  ));
+  // const list = props.nav.map((item, index) => (
+  //   <li key={index}>
+  //     <a href={"/sub/" + item.title}>{item.title}</a>
+  //   </li>
+  // ));
 
+  // props.nav = [{ title: "html" }, { title: "css" }, { title: "js" }]
+
+  // const{nav}=props;
   return (
     <nav>
-      <ul>{list}</ul>
+      <ul>
+        {nav.map((item, index) => (
+          <li key={index}>
+            <a href={"/sub/" + item.title}>{item.title}</a>
+          </li>
+        ))}
+      </ul>
     </nav>
   );
 }
@@ -40,8 +51,7 @@ function App() {
   return (
     <div className="root">
       {/* sum(1, 2) */}
-      <HeaderStyled title="리액트(React)" />
-      <Nav nav={navArr} />
+      <HeaderStyled title="리액트(React)" nav={navArr} />
       <Article title="리액트란?" desc="desc1" />
       <Article title="컴포넌트란?" desc="desc2" />
       <Article title="props란?" desc="desc3" />
