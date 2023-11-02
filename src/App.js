@@ -1,52 +1,51 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function Header(props) {
-    console.log(props); // const props = {title: "리액트(React)"}
+function App() {
+    const navArr = [{ title: 'html' }, { title: 'css' }, { title: 'js' }];
+    return (
+        <div className="root">
+            <HeaderStyled title="리액트(React)" nav={navArr} />
+            <Article title="리액트란?" desc="desc1" />
+            <Article title="컴포넌트란?" desc="desc2" />
+            <Article title="props란?" desc="desc3" />
+        </div>
+    );
+}
+
+function Header({ title, nav }) {
+    // props.nav = [{title: 'html'}, {title: 'css'}, {title: 'js'}]
+    // const { title, nav } = props;
     return (
         <header>
-            <h1>{props.title}</h1>
-            <Nav />
+            <h1>{title}</h1>
+            <Nav nav={nav} />
         </header>
     );
 }
 
-function Nav() {
+function Nav({ nav }) {
+    // props.nav = [{title: 'html'}, {title: 'css'}, {title: 'js'}]
+    // const { nav } = props;
     return (
         <nav>
             <ul>
-                <li>
-                    <a href="/">html</a>
-                </li>
-                <li>
-                    <a href="/">css</a>
-                </li>
-                <li>
-                    <a href="/">js</a>
-                </li>
+                {nav.map((item, index) => (
+                    <li key={index}>
+                        <a href={'/sub/' + item.title}>{item.title}</a>
+                    </li>
+                ))}
             </ul>
         </nav>
     );
 }
 
-function Article() {
+function Article(props) {
     return (
         <article>
-            <h2>타이틀1</h2>
-            <p>Hello, React</p>
+            <h2>{props.title}</h2>
+            <p>{props.desc}</p>
         </article>
-    );
-}
-
-function App() {
-    return (
-        <div className="root">
-            {/* sum(1, 2) */}
-            <HeaderStyled title="리액트(React)" />
-            <Article />
-            <Article />
-            <Article />
-        </div>
     );
 }
 
